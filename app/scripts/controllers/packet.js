@@ -11,25 +11,23 @@ angular.module('packetviewApp')
   .controller('PacketCtrl', function ($scope) {
     $scope.packet = null;
     $scope.idx = 0;
-
-    $scope.packets = [
-      null,
-      {
-        bytes: 1063,
-        protocols: [{
-          name: 'Ethernet',
-          bytes: 14,
-          fields: [{
-            name: 'Src',
-            value: '00:00:00:00:00:00'
-          }, {
-            name: 'Dst',
-            value: '00:00:00:00:00:00'
-          }, {
-            name: 'Type',
-            value: 'VLAN(0x8100)'
-          }]
+    
+    var ethernet = {
+        name: 'Ethernet',
+        bytes: 14,
+        fields: [{
+          name: 'Src',
+          value: '00:00:00:00:00:00'
         }, {
+          name: 'Dst',
+          value: '00:00:00:00:00:00'
+        }, {
+          name: 'Type',
+          value: 'VLAN(0x8100)'
+        }]
+      }
+      
+    var vlan = {
           name: 'VLAN',
           bytes: 4,
           fields: [{
@@ -42,30 +40,27 @@ angular.module('packetviewApp')
             name: 'EtherType',
             value: 'VLAN(0x8100)'
           }]
-        }, {
+        }
+        
+    var payload = {
           name: 'Payload',
           bytes: 1000
-        }]
-      }, {
-        bytes: 1063,
-        protocols: [{
-          name: 'Ethernet',
-          bytes: 14,
-          fields: [{
-            name: 'Src',
-            value: '00:00:00:00:00:00'
-          }, {
-            name: 'Dst',
-            value: '00:00:00:00:00:00'
-          }, {
-            name: 'Type',
-            value: 'VLAN(0x8100)'
-          }]
-        }]
-    }];
+        }
 
     $scope.toggle = function() {
-      $scope.idx = ($scope.idx + 1) % $scope.packets.length;
-      $scope.packet = $scope.packets[$scope.idx];
+        if ($scope.packet == null) {
+            $scope.packet = {
+                bytes: 1020,
+                protocols: $.extend(true, [], [ethernet, vlan, payload])
+            }
+        } else if ($scope.packet.protocols.length == 3) {
+            $scope.packet.protocols.splice(1,2);
+            $scope.packet.bytes = 14;
+        } else if ($scope.packet.protocols.length == 1) {
+            $scope.packet.protocols.splice(0,0,$.extend(true, {}, vlan));
+            $scope.packet.bytes = 20;
+        } else {
+            $scope.packet = null;
+        }
     };
   });
