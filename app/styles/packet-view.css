@@ -1,6 +1,22 @@
 .rnn-holder {
   margin: 40px 0 0;
 }
+.rnn-holder .ng-move,
+.rnn-holder .ng-enter,
+.rnn-holder .ng-leave {
+  -webkit-transition: all linear 0.5s;
+  transition: all linear 0.5s;
+}
+.rnn-holder .ng-leave.ng-leave-active,
+.rnn-holder .ng-move,
+.rnn-holder .ng-enter {
+  opacity: 0;
+}
+.rnn-holder .ng-leave,
+.rnn-holder .ng-move.ng-move-active,
+.rnn-holder .ng-enter.ng-enter-active {
+  opacity: 1;
+}
 .rnn-holder .rnn-total-bytes {
   text-align: center;
   border: 1px solid black;
@@ -21,6 +37,8 @@
 }
 .rnn-holder .rnn-stack .rnn-item {
   display: table-cell;
+  -webkit-transition: all linear 0.5s;
+  transition: all linear 0.5s;
   text-align: center;
 }
 .rnn-holder .rnn-stack .rnn-item .rnn-bytes {
@@ -37,6 +55,8 @@
   background: #42a0bb;
 }
 .rnn-holder .rnn-stack .rnn-item .rnn-connection {
+  -webkit-transition: all linear 0.5s;
+  transition: all linear 0.5s;
   margin: 0 auto;
   position: relative;
   left: 6px;
@@ -45,6 +65,8 @@
   border-width: 0 0 2px 2px;
 }
 .rnn-holder .rnn-stack .rnn-item .rnn-fields-holder {
+  -webkit-transition: all linear 0.5s;
+  transition: all linear 0.5s;
   text-align: left;
   margin: 0 auto;
   margin-top: -2px;
@@ -54,6 +76,8 @@
   overflow: visible;
 }
 .rnn-holder .rnn-stack .rnn-item .rnn-field {
+  -webkit-transition: all linear 0.5s;
+  transition: all linear 0.5s;
   font-size: 12px;
   white-space: nowrap;
   line-height: 1.0;

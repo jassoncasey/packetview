@@ -47,10 +47,25 @@ angular.module('packetviewApp')
           bytes: 1000
         }]
       }, {
+        bytes: 1063,
+        protocols: [{
+          name: 'Ethernet',
+          bytes: 14,
+          fields: [{
+            name: 'Src',
+            value: '00:00:00:00:00:00'
+          }, {
+            name: 'Dst',
+            value: '00:00:00:00:00:00'
+          }, {
+            name: 'Type',
+            value: 'VLAN(0x8100)'
+          }]
+        }]
     }];
 
     $scope.toggle = function() {
       $scope.idx = ($scope.idx + 1) % $scope.packets.length;
-      $scope.packet = $scope.packets[$scope.idx]
+      $scope.packet = $scope.packets[$scope.idx];
     };
   });
