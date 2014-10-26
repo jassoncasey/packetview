@@ -12,6 +12,11 @@
 .rnn-holder .ng-enter {
   opacity: 0;
 }
+.rnn-holder .ng-leave {
+    display: block;
+    width: 0!important;
+    max-width: 0!important;
+}
 .rnn-holder .ng-leave,
 .rnn-holder .ng-move.ng-move-active,
 .rnn-holder .ng-enter.ng-enter-active {
