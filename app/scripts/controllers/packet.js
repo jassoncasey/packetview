@@ -51,7 +51,7 @@ angular.module('packetviewApp')
         if ($scope.packet == null) {
             $scope.packet = {
                 bytes: 1020,
-                protocols: $.extend(true, [], [ethernet, vlan, payload])
+                protocols: $.extend(true, [], [ethernet, vlan, vlan, vlan, ethernet])
             }
         } else if ($scope.packet.protocols.length == 3) {
             $scope.packet.protocols.splice(1,2);
